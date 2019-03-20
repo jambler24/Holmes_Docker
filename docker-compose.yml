@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  web:
+    build: .
+    command: bash -c "python holmes/holmes_core/manage.py makemigrations && python holmes/holmes_core/manage.py migrate && python holmes/holmes_core/manage.py runserver 0.0.0.0:8000"
+    container_name: holmes
+    volumes:
+      - .:/holmes
+      - ./bam_files/:/bam_files
+      - ./annotations/:/annotations/
+      - ./ref_genome/:/ref_genome/
+    ports:
+      - "8000:8000"
