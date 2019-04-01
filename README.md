@@ -18,6 +18,8 @@ Move the downloaded file to a folder you would like to work from.
 
 Create 3 folders in that folder named "annotations", "bam_files", and "ref_genome"
 
+If you are using Windows, double-click on build_docker.bat and go to step 5.
+
 Place the bam files, allong with their index files, into the bam_files folder.
 
 Place the reference genome fasta file into the ref_genome folder.
@@ -33,6 +35,8 @@ In command line, run the command:
 This will build the docker container. You only need to do this once.
 
 ## 5. Start the web server
+
+If you are using Windows, double-click on run_holmes.bat
 
 To start the web server, type:
 
