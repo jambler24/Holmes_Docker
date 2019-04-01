@@ -6,8 +6,6 @@ For windows, Download Docker from here and follow the instrustions
 
 https://docs.docker.com/docker-for-windows/install/
 
-Go to https://github.com/jambler24/Holmes_Docker
-
 ## 2. Get the required files 
 
 Download the Dockerfile and docker-compose.yml by clicking on the "Download or clone" button, and selecting "Download zip".
