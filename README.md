@@ -24,7 +24,7 @@ Place the reference genome fasta file into the ref_genome folder.
 
 Place the annotation files in the annotations folder. (gff, bed)
 
-##4. Build the docker container
+## 4. Build the docker container
 
 In command line, run the command:
 
