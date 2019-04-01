@@ -29,5 +29,5 @@ To start the web server, type:
 
 `docker-compose up`
 
-and go to 0.0.0.0:8000 in your web browser. 
+and go to http://0.0.0.0:8000 in your web browser. 
 
