@@ -2,7 +2,7 @@
 The docker install files for Holmes
 
 ## 1. Install Docker
-For windows, Download Docker from here and follow the instrustions
+For windows, Download Docker from here and follow the instructions
 
 https://docs.docker.com/docker-for-windows/install/
 
