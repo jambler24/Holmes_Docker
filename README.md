@@ -16,9 +16,9 @@ Move the downloaded file to a folder you would like to work from.
 
 ## 3. Create the required folders
 
-Create 3 folders in that folder named "annotations", "bam_files", and "ref_genome"
-
 If you are using Windows, double-click on build_docker.bat and go to step 5.
+
+Create 3 folders in that folder named "annotations", "bam_files", and "ref_genome"
 
 Place the bam files, allong with their index files, into the bam_files folder.
 
