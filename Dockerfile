@@ -16,6 +16,7 @@ RUN apt-get update --fix-missing -qq && apt-get install -y -q \
     python3 \
     python-tk \
     wget \
+    python3-pip \
     python-pip \
     && apt-get clean \
     && apt-get purge
