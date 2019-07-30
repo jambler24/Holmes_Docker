@@ -34,9 +34,9 @@ RUN curl -fksSL https://github.com/vcftools/vcftools/releases/download/v0.1.14/v
     cd vcftools-0.1.14 && \
     ./configure; make; make install
 
-RUN pip install --upgrade pip
-RUN pip install -U \
-Django \
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install -U \
+Django==1.11.0 \
 gunicorn==19.6.0 \
 beautifulsoup4 \
 html5lib==1.0b8 \

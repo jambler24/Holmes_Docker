@@ -3,7 +3,7 @@ version: '2'
 services:
   web:
     build: .
-    command: bash -c "cd /holmes/Holmes/ && git pull && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "cd /holmes/Holmes/ && git pull && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
     container_name: holmes
     volumes:
       - ./bam_files/:/bam_files
