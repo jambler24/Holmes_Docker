@@ -20,6 +20,17 @@ RUN apt-get update --fix-missing -qq && apt-get install -y -q \
     && apt-get clean \
     && apt-get purge
 
+
+# install SAMtools
+RUN curl -fksSL https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2 | tar xj && \
+    cd samtools-1.3.1 && \
+    make all all-htslib && make install install-htslib
+
+# install VCFtools
+RUN curl -fksSL https://github.com/vcftools/vcftools/releases/download/v0.1.14/vcftools-0.1.14.tar.gz | tar xz && \
+    cd vcftools-0.1.14 && \
+    ./configure; make; make install
+
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install -U \
 Django \
@@ -38,16 +49,6 @@ GenGraph \
 biopython \
 static-ranges
 
-
-# install SAMtools
-RUN curl -fksSL https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2 | tar xj && \
-    cd samtools-1.3.1 && \
-    make all all-htslib && make install install-htslib
-
-# install VCFtools
-RUN curl -fksSL https://github.com/vcftools/vcftools/releases/download/v0.1.14/vcftools-0.1.14.tar.gz | tar xz && \
-    cd vcftools-0.1.14 && \
-    ./configure; make; make install
 
 
 # Install BCFTools - Not working "cram/cram_io.c:57:19: fatal error: bzlib.h: No such file or directory"
