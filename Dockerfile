@@ -20,8 +20,8 @@ RUN apt-get update --fix-missing -qq && apt-get install -y -q \
     && apt-get clean \
     && apt-get purge
 
-RUN pip install --upgrade pip
-RUN pip install -U \
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install -U \
 Django \
 gunicorn==19.6.0 \
 beautifulsoup4 \
@@ -34,6 +34,7 @@ pandas \
 scipy \
 pysam \
 matplotlib \
+GenGraph \
 biopython \
 static-ranges
 
