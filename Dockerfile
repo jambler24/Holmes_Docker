@@ -9,6 +9,7 @@ RUN apt-get update --fix-missing -qq && apt-get install -y -q \
     pkg-config \
     zlib1g-dev \
     bzip2 \
+    bzip2-devel \
     default-jre \
     git-core \
     bc \
