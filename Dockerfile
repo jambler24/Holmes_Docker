@@ -5,11 +5,12 @@ RUN apt-get update --fix-missing -qq && apt-get install -y -q \
     locales \
     libncurses5-dev  \
     libncursesw5-dev \
+    libbz2-dev \
+    liblzma-dev \
     build-essential \
     pkg-config \
     zlib1g-dev \
     bzip2 \
-    bzip2-devel \
     default-jre \
     git-core \
     bc \
