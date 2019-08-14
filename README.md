@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jambler24/Holmes_Docker.svg?branch=master)](https://travis-ci.org/jambler24/Holmes_Docker)
+
 # Holmes_Docker
 The docker install files for Holmes
 
