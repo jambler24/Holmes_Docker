@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM python:3.7.1
 
 RUN apt-get update --fix-missing -qq && apt-get install -y -q \
     curl \
@@ -20,9 +20,15 @@ RUN apt-get update --fix-missing -qq && apt-get install -y -q \
     wget \
     python3-pip \
     python-pip \
+    sqlite3 \
+    postgresql \
+    postgresql-contrib \
+    postgresql-client \
     && apt-get clean \
     && apt-get purge
 
+# install nginx
+RUN apt-get update && apt-get install nginx vim -y --no-install-recommends
 
 # install SAMtools
 RUN curl -fksSL https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2 | tar xj && \
@@ -34,24 +40,13 @@ RUN curl -fksSL https://github.com/vcftools/vcftools/releases/download/v0.1.14/v
     cd vcftools-0.1.14 && \
     ./configure; make; make install
 
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install -U \
-Django \
-gunicorn==19.6.0 \
-beautifulsoup4 \
-html5lib==1.0b8 \
-requests \
-django-tables2 \
-networkx \
-numpy \
-pandas \
-scipy \
-pysam \
-matplotlib \
-GenGraph \
-biopython \
-static-ranges
+RUN mkdir /deps
 
+#ADD ./holmes_django/requirements.txt /deps/
+ADD ["./Docker_things/requirements.txt", "/deps/"]
+
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install -Ur /deps/requirements.txt
 
 
 # Install BCFTools - Not working "cram/cram_io.c:57:19: fatal error: bzlib.h: No such file or directory"
@@ -62,16 +57,32 @@ static-ranges
 # to the terminal with out buffering it first
 ENV PYTHONUNBUFFERED 1
 
+
 # create root directory for our project in the container
 RUN mkdir /holmes
 
-RUN cd holmes; git clone https://github.com/jambler24/Holmes.git
-
 # Copy the current directory contents into the container at /holmes
-#ADD ./holmes_core/ /holmes/
+#COPY ./holmes_django/ /holmes/
+COPY ["./holmes_django/", "/holmes/"]
 
-#EXPOSE 8000
+WORKDIR /holmes/holmes_core
+
+# Create the DB?
+
+
+#RUN python3 manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'adminpass')"
+
+
+EXPOSE 8000
+
+ENV DJANGO_SUPERUSER_PASSWORD=admin
+ENV DJANGO_SUPERUSER_USERNAME=admin
+ENV DJANGO_SUPERUSER_EMAIL=admin@test.com
 
 #CMD ls holmes
-#CMD python holmes/manage.py makemigrations && python holmes/manage.py migrate && holmes/start.sh
+CMD python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py ensure_adminuser --username=admin --email=this@that.com --password=admin && python3 manage.py runserver 0.0.0.0:8000
 
+#RUN [ "python3 holmes/manage.py", "holmes/start.sh" ]
+
+
+#docker run -i jambler24/holmes_app /bin/bash

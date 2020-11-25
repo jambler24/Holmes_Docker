@@ -1,13 +1,14 @@
-version: '2'
-
+version: '3'
 services:
-  web:
-    build: .
-    command: bash -c "cd /holmes/Holmes/ && git pull && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
-    container_name: holmes
+  app:
+    #image: jambler24/holmes_app
+    image: holmes_app:latest
+    command: bash -c "python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8080"
     volumes:
       - ./bam_files/:/bam_files
       - ./annotations/:/annotations/
       - ./ref_genome/:/ref_genome/
+      - ./database/:/db/
+      - ./variant_files/:/variant_files/
     ports:
       - "8000:8000"
