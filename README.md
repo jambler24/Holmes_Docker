@@ -4,7 +4,12 @@
 
 Welcome to the Holmes repository for getting the platform set up.
 
-Holmes is a container based web app that allows users to:
+Holmes allows researchers and clinicians to conduct QC and reporting on panels in an intuitive interface with a simple setup process.
+
+The Holmes interface is a web page, as most users are familiar with the navigation. By running in Docker, Holmes is able to run on many different environments with minimal setup.
+
+## Functionality
+Holmes allows users to:
 
 - Panel based analysis
     - Add panels based on lists of gene names or from provided bed files
@@ -19,9 +24,6 @@ Holmes is a container based web app that allows users to:
     - Find variants in the regions defined by the panel
     - Report information on the effect of the mutation, and any clinical implications (based on information available 
     on databases including clinvar and SnpEff)
-
-## Functionality
-
 
 ## Installation 
 
@@ -54,7 +56,17 @@ http://127.0.0.1:8000
 
 ## Holmes stack
 
-Django in a Docker container 
-Available on Docker hub
-No installation required except for Docker
-Can be deployed as a web app 
+Holmes is a Django web app in a Docker container.
+
+This means no installation required except for Docker, it works on any platform that can run Docker, and it can be deployed as a web app with a few changes.
+
+By using a browser based front end, Holmes can take advantage of the vast amount of interactive plotting libraries available. 
+
+### Availability 
+
+Available on Docker hub:
+https://hub.docker.com/repository/docker/jambler24/holmes_app
+
+Source code:
+https://github.com/jambler24/Holmes
+
